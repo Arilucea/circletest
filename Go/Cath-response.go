@@ -19,8 +19,8 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 
-	contractCaller "Go/CallerGo"
-	contract "Go/OracleGo"
+	contractCaller "github.com/arilucea/circletest/Go/CallerGo"
+	contract "github.com/arilucea/circletest/Go/OracleGo"
 )
 
 //Configuration json
