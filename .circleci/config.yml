@@ -51,5 +51,6 @@ workflows:
     triggers:
       - schedule:
           cron: "30 19 * * *" # Ejecutarlo a las 7:30 de la tarde todos los dias (minutos, horas, dia del mes (1,31), mes (1,12), dia de la semana (0 (domingo),6))
+          filters:
     jobs:
       - create_space
