@@ -15,8 +15,6 @@ jobs:
           root: Go
           paths:
             - ./*
-     
-  
   test_space:
     docker:
       - image: circleci/golang:1.9
@@ -34,6 +32,7 @@ jobs:
     steps:
       - checkout
       - run: echo "Building application"
+      - run: echo $PKTEST
 
 workflows:
   version: 2
@@ -45,4 +44,12 @@ workflows:
             - create_space
   flow_two:
     jobs:
-      - build_application
+      - build_application:
+          context: CiTest
+
+  programmed:
+    triggers:
+      - schedule:
+        cron: "30 19 * * *" # Ejecutarlo a las 7:30 de la tarde todos los dias (minutos, horas, dia del mes (1,31), mes (1,12), dia de la semana (0 (domingo),6))
+    jobs:
+      - create_space
