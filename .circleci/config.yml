@@ -7,13 +7,13 @@ jobs:
     docker:
       - image: circleci/golang:1.9
     steps:
-      - run: "Echo create workspace test"
+      - run: echo "Create workspace test"
   
   test_space:
     docker:
       - image: circleci/golang:1.9
     steps:
-      - run: "Echo attach workspace test" 
+      - run: echo "Attach workspace test" 
 
 workflows:
   version: 2
