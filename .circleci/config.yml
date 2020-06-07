@@ -15,7 +15,7 @@ jobs:
       - persist_to_workspace:
           root: Go
           paths:
-            - /*
+            - ./*
      
   
   test_space:
