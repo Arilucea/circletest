@@ -27,5 +27,6 @@ workflows:
     jobs:
       - create_space
       - test_space:
-        require:
-          - create_space
+          require:
+            - create_space
+      - build_application
