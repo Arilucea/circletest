@@ -9,8 +9,7 @@ jobs:
     steps:
       - checkout
       - run: echo "Create workspace test"
-      - run: mkdir -p Go/my_workspace
-      - run: echo "Trying out workspaces" > Go/my_workspace/echo-output
+      - run: echo "Trying out workspaces" > Go/echo-output
       - run: ls
       - persist_to_workspace:
           root: Go
@@ -27,6 +26,7 @@ jobs:
       - attach_workspace:
           at: Go
       - run: ls Go
+      - run: cat Go/echo-output
   
   build_application:
     docker:
