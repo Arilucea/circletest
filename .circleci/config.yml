@@ -20,6 +20,4 @@ workflows:
   flow_one:
     jobs:
       - create_space
-      - test_space:
-          requires:
-            - create_space
+      - test_space
