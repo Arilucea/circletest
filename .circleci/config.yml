@@ -24,9 +24,9 @@ jobs:
     steps:
       - checkout
       - run: echo "Attach workspace test"
-      - run: ls
       - attach_workspace:
           at: Go
+      - run: ls
   
   build_application:
     docker:
