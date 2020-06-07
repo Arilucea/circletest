@@ -7,18 +7,32 @@ jobs:
     docker:
       - image: circleci/golang:1.9
     steps:
+      - checkout
       - run: echo "Create workspace test"
+      - run: mkdir -p my_workspace
+      - run: echo "Trying out workspaces" > my_workspace/echo-output
+      - run: ls
+      - persist_to_workspace:
+          root: Go
+          paths:
+            - /*
+     
   
   test_space:
     docker:
       - image: circleci/golang:1.9
     steps:
+      - checkout
       - run: echo "Attach workspace test"
+      - run: ls
+      - attach_workspace:
+          at: Go
   
   build_application:
     docker:
       - image: circleci/golang:1.9
     steps:
+      - checkout
       - run: echo "Building application"
 
 workflows:
