@@ -2,6 +2,29 @@
 #
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
+
+# Steps to reuse
+commands:
+  set_workspace:
+    steps:
+      - run: echo "Trying out workspaces" > Go/echo-output
+      - run: ls
+      - persist_to_workspace:
+          root: Go
+          paths:
+            - ./*
+
+  get_workspace:
+    steps:
+      - attach_workspace:
+          at: Go
+
+# Enviroments to execute
+executors:
+  docker-go:
+    docker:
+      - image: circleci/golang:1.9
+
 jobs:
   create_space:
     docker:
@@ -11,24 +34,20 @@ jobs:
       - run: echo "Create workspace test"
       - run: echo "Trying out workspaces" > Go/echo-output
       - run: ls
-      - persist_to_workspace:
-          root: Go
-          paths:
-            - ./*
+      - set_workspace
+
   test_space:
     docker:
       - image: circleci/golang:1.9
     steps:
       - checkout
       - run: echo "Attach workspace test"
-      - attach_workspace:
-          at: Go
+      - get_workspace
       - run: ls Go
       - run: cat Go/echo-output
   
   build_application:
-    docker:
-      - image: circleci/golang:1.9
+    executor: docker-go
     steps:
       - checkout
       - run: echo "Building application"
@@ -42,6 +61,7 @@ workflows:
       - test_space:
           requires:
             - create_space
+
   flow_two:
     jobs:
       - build_application:
