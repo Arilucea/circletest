@@ -1,7 +1,7 @@
 # Golang CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-go/ for more details
-version: 2
+version: 2.1
 
 # Steps to reuse
 commands:
@@ -20,10 +20,10 @@ commands:
           at: Go
 
 # Enviroments to execute
-#executors:
-  #docker-executor:
-   # docker:
-    #  - image: circleci/golang:1.9
+executors:
+  docker-executor:
+    docker:
+      - image: circleci/golang:1.9
 
 jobs:
   create_space:
@@ -55,7 +55,7 @@ jobs:
       - run: echo $PKTEST
 
 workflows:
-  version: 2
+  version: 2.1
   flow_one:
     jobs:
       - create_space
