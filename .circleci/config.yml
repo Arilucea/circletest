@@ -21,7 +21,7 @@ commands:
 
 # Enviroments to execute
 executors:
-  docker-go:
+  docker-executor:
     docker:
       - image: circleci/golang:1.9
 
@@ -47,7 +47,7 @@ jobs:
       - run: cat Go/echo-output
   
   build_application:
-    executor: docker-go
+    executor: docker-executor
     steps:
       - checkout
       - run: echo "Building application"
