@@ -20,10 +20,10 @@ commands:
           at: Go
 
 # Enviroments to execute
-executors:
-  docker-executor:
-    docker:
-      - image: circleci/golang:1.9
+#executors:
+  #docker-executor:
+   # docker:
+    #  - image: circleci/golang:1.9
 
 jobs:
   create_space:
@@ -47,7 +47,8 @@ jobs:
       - run: cat Go/echo-output
   
   build_application:
-    executor: docker-executor
+    docker:
+      - image: circleci/golang:1.9
     steps:
       - checkout
       - run: echo "Building application"
